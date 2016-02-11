@@ -9,6 +9,11 @@ public class Person implements Comparable<Person>
         this.name = inputName;
     }
     
+    public String getName()
+    {
+        return name;
+    }
+    
     public int compareTo(Person other)
     {
         return name.compareTo(other.name);
