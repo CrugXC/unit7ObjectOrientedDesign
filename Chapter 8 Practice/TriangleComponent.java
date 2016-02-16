@@ -3,7 +3,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Ellipse2D;
-
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class TriangleComponent extends JComponent
 {  
@@ -18,6 +19,7 @@ public class TriangleComponent extends JComponent
     
     private int dotRadius;
     private int count;
+    
     
     public TriangleComponent(int dotRad)
     {
@@ -55,15 +57,15 @@ public class TriangleComponent extends JComponent
         
         else if (count % 4 == 1)
         {
-            secondPoint = new Ellipse2D.Double(x, y, dotRadius, dotRadius);
-            line1 = new Line2D.Double(firstPoint.getX(), firstPoint.getY(), secondPoint.getX(), secondPoint.getY());
+            secondPoint = new Ellipse2D.Double(x - (dotRadius/2), y - (dotRadius/2), dotRadius, dotRadius);
+            line1 = new Line2D.Double(firstPoint.getX() + (dotRadius/2), firstPoint.getY() + (dotRadius/2), secondPoint.getX() + (dotRadius/2), secondPoint.getY() + (dotRadius/2));
         }
         
         else if (count % 4 == 2)
         {
-            thirdPoint = new Ellipse2D.Double(x, y, dotRadius, dotRadius);
-            line2 = new Line2D.Double(thirdPoint.getX(), thirdPoint.getY(), secondPoint.getX(), secondPoint.getY());
-            line3 = new Line2D.Double(firstPoint.getX(), firstPoint.getY(), thirdPoint.getX(), thirdPoint.getY());
+            thirdPoint = new Ellipse2D.Double(x - (dotRadius/2), y - (dotRadius/2), dotRadius, dotRadius);
+            line2 = new Line2D.Double(thirdPoint.getX() + (dotRadius/2), thirdPoint.getY() + (dotRadius/2), secondPoint.getX() + (dotRadius/2), secondPoint.getY() + (dotRadius/2));
+            line3 = new Line2D.Double(firstPoint.getX() + (dotRadius/2), firstPoint.getY() + (dotRadius/2), thirdPoint.getX() + (dotRadius/2), thirdPoint.getY() + (dotRadius/2));
         }
         else
         {
@@ -71,5 +73,10 @@ public class TriangleComponent extends JComponent
             secondPoint = null;
             thirdPoint = null;
         }
+        count++;
+        
+        this.repaint();
     }
+    
+    
 }
