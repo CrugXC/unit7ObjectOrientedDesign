@@ -28,13 +28,11 @@ public class TriangleGUI extends JFrame
     
     public class ClickListener implements MouseListener
     {
-        
-        public void mouseClicked(MouseEvent event)
-        {       
+        public void mouseClicked(MouseEvent event){}
+        public void mousePressed(MouseEvent event)
+        {
             comp.placeDot(event.getX(), event.getY());
         }
-        
-        public void mousePressed(MouseEvent event){}
         public void mouseReleased(MouseEvent event){}
         public void mouseExited(MouseEvent event){}
         public void mouseEntered(MouseEvent event){}
