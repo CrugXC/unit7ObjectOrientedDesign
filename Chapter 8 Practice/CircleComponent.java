@@ -24,11 +24,10 @@ public class CircleComponent extends JComponent
 
     public void paintComponent(Graphics g)
     {
-        if(x == 0)
-        {
-            Graphics2D g2 = (Graphics2D) g;
-            g2.draw(new Ellipse2D.Double(x, y, radius, radius));
-        }
+
+        Graphics2D g2 = (Graphics2D) g;
+        g2.draw(new Ellipse2D.Double(x, y, radius, radius));
+       
     }
     
     
