@@ -3,14 +3,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
-public class CircleFrame extends JFrame
+public class CircleFrame2 extends JFrame
 {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;    
     
     private CircleComponent comp;
     
-    public CircleFrame()
+    public CircleFrame2()
     {
         comp = new CircleComponent();
 

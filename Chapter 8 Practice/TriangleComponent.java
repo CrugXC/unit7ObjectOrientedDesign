@@ -52,7 +52,7 @@ public class TriangleComponent extends JComponent
     {
         if (count % 4 == 0)
         {
-            firstPoint = new Ellipse2D.Double(x, y, dotRadius, dotRadius);
+            firstPoint = new Ellipse2D.Double(x - (dotRadius/2), y - (dotRadius/2), dotRadius, dotRadius);
         }
         
         else if (count % 4 == 1)
