@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
+
 
 /**
  * ControlPanel extends JPanel. Add three buttons to it: 
@@ -31,29 +33,28 @@ public class ControlPanel extends JPanel
     private JButton colorSelect;
     private JButton addCircle;
     private JButton addRectangle;
-    public ControlPanel()
+    public ControlPanel(DrawingPanel canvas)
     {
         /* Creates buttons */
         colorSelect = new JButton("Select Color");
-        colorSelect.setPreferredSize(new Dimension(80, 50));
+        colorSelect.setPreferredSize(new Dimension(150, 50));
         this.add(colorSelect);
         
         addCircle = new JButton("Add Circle");
-        addCircle.setPreferredSize(new Dimension(80, 50));
+        addCircle.setPreferredSize(new Dimension(150, 50));
         this.add(addCircle);
         
         addRectangle = new JButton("Add Rectangle");
-        addRectangle.setPreferredSize(new Dimension(80, 50));
+        addRectangle.setPreferredSize(new Dimension(150, 50));
         this.add(addRectangle);
+        
         
         /* Adds ClickListener to each button */
         ClickListener listener = new ClickListener();
         colorSelect.addActionListener(listener);
         
-        ClickListener listener = new ClickListener();
         addCircle.addActionListener(listener);
         
-        ClickListener listener = new ClickListener();
         addRectangle.addActionListener(listener);
     }
 
@@ -66,16 +67,19 @@ public class ControlPanel extends JPanel
         
         public void actionPerformed(ActionEvent event)
         {
-            if (event.getActionPerformed.equals("Select Color"))
+            if (event.getActionCommand().equals("Select Color"))
             {
+                System.out.println("Select Color");
             }
             
-            else if (event.getActionPerformed.equals("Add Circle"))
+            else if (event.getActionCommand().equals("Add Circle"))
             {
+                System.out.println("Add Circle");
             }
             
-            else if (event.getActionPerformed.equals("Add Rectangle"))
+            else if (event.getActionCommand().equals("Add Rectangle"))
             {
+                System.out.println("Add Rectangle");
             }
             
             else

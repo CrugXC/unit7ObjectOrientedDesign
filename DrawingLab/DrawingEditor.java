@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import java.awt.BorderLayout;
 
 public class DrawingEditor extends JFrame
 {
@@ -13,8 +14,17 @@ public class DrawingEditor extends JFrame
         canvas = new DrawingPanel();
         controls = new ControlPanel(canvas);
         
-        this.add(canvas);
+        this.setLayout(new BorderLayout());
+        this.add(canvas, BorderLayout.CENTER);
+        this.add(controls, BorderLayout.SOUTH);
         
-        this.setSuze(WIDTH, HEIGHT);
+        this.setSize(WIDTH, HEIGHT);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+    
+    public static void main(String[] args)
+    {
+        DrawingEditor editor = new DrawingEditor();
     }
 }

@@ -5,6 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JColorChooser;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 
 // implements MouseListener, MouseMotionListener, KeyListener
 /**
@@ -24,29 +30,54 @@ public class DrawingPanel extends JPanel
     /** description of instance variable x (add comment for each instance variable) */
     private ArrayList<Shape> shapes;
     private Shape activeShape;
+    
+    private Color currColor;
+    
+    private Dimension dim;
+    
     /**
      * Default constructor for objects of class DrawingPanel
      */
     public DrawingPanel()
     {
+        currColor = Color.WHITE;
+        
+        shapes = new ArrayList<Shape>();
+        
+        dim = new Dimension(1000, 800);
+    }
+    
+    public Color getColor()
+    {
+        return currColor;
+    }
+    
+    public Dimension getPreferredSize()
+    {
+        return dim;
+    }
+    
+    public void pickColor()
+    {
+        currColor = JColorChooser.showDialog(this, "Pick Color", currColor);
+    }
+    
+    public void addCircle()
+    {
         
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
+    
+    public void addSquare()
     {
-        // put your code here
-        return x+y;
+        
     }
-
+    
+    public void paintComponent(Graphics g)
+    {
+        Graphics2D g2 = (Graphics2D) g;
+        for(Shape shp: shapes)
+        {
+            g2.draw(shp);
+        }
+    }
 }

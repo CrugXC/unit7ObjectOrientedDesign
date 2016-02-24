@@ -1,10 +1,11 @@
 
 
 /**
- * Write a description of class Shape here.
+ * This abstract class implements a shape with a given
+ * center, radius, and color.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jay Rixie 
+ * @version 2/24/16
  */
 public class Shape
 {
@@ -14,27 +15,12 @@ public class Shape
     /**
      * Default constructor for objects of class Shape
      */
-    public Shape()
+    public Shape(Point2D.Double center, double radius, Color color)
     {
-        // initialise instance variables
-        x = 0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x+y;
-    }
+    
+    public Point2D.Double getCenter()
 
+    
 }
