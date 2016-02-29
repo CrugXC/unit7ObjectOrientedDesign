@@ -10,7 +10,7 @@ import java.awt.Dimension;
 import javax.swing.JColorChooser;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
+import java.awt.geom.Point2D;
 
 // implements MouseListener, MouseMotionListener, KeyListener
 /**
@@ -69,6 +69,7 @@ public class DrawingPanel extends JPanel
     
     public void addSquare()
     {
+        shapes.add(new Square(new Point2D.Double(100, 100), 25, currColor));
         
     }
     
@@ -77,7 +78,7 @@ public class DrawingPanel extends JPanel
         Graphics2D g2 = (Graphics2D) g;
         for(Shape shp: shapes)
         {
-            g2.draw(shp);
+            shp.draw(g2, (activeShape == shp) );
         }
     }
 }
