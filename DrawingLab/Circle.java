@@ -13,31 +13,39 @@ public class Circle extends Shape
 {
     /** description of instance variable x (add comment for each instance variable) */
     private Ellipse2D.Double circle;
-
+    
     /**
      * Default constructor for objects of class Circle
      */
     public Circle(Point2D.Double inputCenter, double inputRadius, Color inputColor)
     {
         super(inputCenter, inputRadius, inputColor);
-        circle = new Ellipse2D(
+        circle = new Ellipse2D.Double(inputCenter.getX() - inputRadius, inputCenter.getY() - inputRadius, 2*inputRadius, 2*inputRadius);
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
+    public boolean isInside(Point2D.Double point)
     {
-        // put your code here
-        return x+y;
+        circle = new Ellipse2D.Double(this.getCenter().getX() - this.getRadius(), inputCenter.getY() - inputRadius, 2*inputRadius, 2*inputRadius);
+        return circle.contains(point);
+    }
+    
+    public boolean isOnBorder(Point2D.Double point)
+    {
+        circle = new Ellipse2D.Double(inputCenter.getX() - inputRadius, inputCenter.getY() - inputRadius, 2*inputRadius, 2*inputRadius);
+        double compRadius = this.getRadius() * .85;
+        Ellipse2D.Double comparator = new Ellipse2D.Double(this.getCenter().getX() - compRadius, this.getCenter().getY() - compRadius, 2*compRadius, 2*compRadius);
+        return circle.contains(point) && !comparator.contains(point);
+    }
+    
+    public void draw(Graphics2D g2, boolean filled)
+    {
+        circle = new Ellipse2D.Double(inputCenter.getX() - inputRadius, inputCenter.getY() - inputRadius, 2*inputRadius, 2*inputRadius);
+        g2.draw(circle);
+        g2.setColor(this.getColor());
+        if (filled)
+        {
+            g2.fill(circle);
+        }
     }
 
 }

@@ -30,6 +30,8 @@ public class ControlPanel extends JPanel
 {
     private Rectangle2D.Double currColor;
     
+    private DrawingPanel canvas;
+    
     private JButton colorSelect;
     private JButton addCircle;
     private JButton addRectangle;
@@ -56,6 +58,9 @@ public class ControlPanel extends JPanel
         addCircle.addActionListener(listener);
         
         addRectangle.addActionListener(listener);
+        
+        
+        this.canvas = canvas;
     }
 
     public class ClickListener implements ActionListener
@@ -69,16 +74,19 @@ public class ControlPanel extends JPanel
         {
             if (event.getActionCommand().equals("Select Color"))
             {
+                canvas.pickColor();
                 System.out.println("Select Color");
             }
             
             else if (event.getActionCommand().equals("Add Circle"))
             {
+                canvas.addCircle();
                 System.out.println("Add Circle");
             }
             
             else if (event.getActionCommand().equals("Add Rectangle"))
             {
+                canvas.addSquare();
                 System.out.println("Add Rectangle");
             }
             
@@ -86,6 +94,7 @@ public class ControlPanel extends JPanel
             {
                 System.out.println("error");
             }
+            canvas.repaint();
         }
     }
     
