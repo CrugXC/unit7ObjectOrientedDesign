@@ -36,7 +36,7 @@ public abstract class Shape
 
     public void move(double x, double y)
     {
-        center = new Point2D.Double(x, y);
+        center = new Point2D.Double(x, y); 
     }
 
     public void setRadius(double r) 
