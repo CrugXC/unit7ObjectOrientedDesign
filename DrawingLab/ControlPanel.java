@@ -28,36 +28,46 @@ import java.awt.Color;
  */
 public class ControlPanel extends JPanel
 {
+    //Color currColor   Active Color
     private Color currColor;
     
+    //DrawingPanel canvas   Allows the canvas to be edited via methods
     private DrawingPanel canvas;
     
+    //JPanel colorSquare    Shows active color
     private JPanel colorSquare;
     
+    //JButton colorSelect   pulls up JColorChooser to select a color
+    //JButton addCircle     calls canvas method to add circle
+    //JButton addRectangle  calls canvas method to add rectangle
     private JButton colorSelect;
     private JButton addCircle;
-    private JButton addRectangle;
+    private JButton addSquare;
     public ControlPanel(DrawingPanel canvas)
     {
-        /* Creates buttons */
+        /* Creates colorSelect */
         colorSelect = new JButton("Select Color");
         colorSelect.setPreferredSize(new Dimension(150, 50));
         this.add(colorSelect);
         
+        //gets current color
         currColor = canvas.getColor();
         
+        //Initializes colorSquare and sets color to currColor
         colorSquare = new JPanel();
         colorSquare.setBackground(currColor);
         colorSquare.setPreferredSize(new Dimension(50, 50));
         this.add(colorSquare);
         
+        //Initializes addCircle button
         addCircle = new JButton("Add Circle");
         addCircle.setPreferredSize(new Dimension(150, 50));
         this.add(addCircle);
         
-        addRectangle = new JButton("Add Rectangle");
-        addRectangle.setPreferredSize(new Dimension(150, 50));
-        this.add(addRectangle);
+        //Initializes addRectangle Button
+        addSquare = new JButton("Add Square");
+        addSquare.setPreferredSize(new Dimension(150, 50));
+        this.add(addSquare);
         
         
         /* Adds ClickListener to each button */
@@ -66,7 +76,7 @@ public class ControlPanel extends JPanel
         
         addCircle.addActionListener(listener);
         
-        addRectangle.addActionListener(listener);
+        addSquare.addActionListener(listener);
         
         
         this.canvas = canvas;
@@ -80,30 +90,34 @@ public class ControlPanel extends JPanel
         
         public void actionPerformed(ActionEvent event)
         {
+            //Determines which button was clicked and runs block
             if (event.getActionCommand().equals("Select Color"))
             {
+                //Changes color and updates colorSquare
                 canvas.pickColor();
-                System.out.println("Select Color");
                 currColor = canvas.getColor();
                 colorSquare.setBackground(currColor);
             }
             
             else if (event.getActionCommand().equals("Add Circle"))
             {
+                //Runs addCircle() on canvas
                 canvas.addCircle();
-                System.out.println("Add Circle");
             }
             
-            else if (event.getActionCommand().equals("Add Rectangle"))
+            else if (event.getActionCommand().equals("Add Square"))
             {
+                //Runs addSquare() on canvas
                 canvas.addSquare();
-                System.out.println("Add Rectangle");
             }
             
             else
             {
+                //Double checking error
                 System.out.println("error");
             }
+            
+            //Updates canvas
             canvas.repaint();
         }
     }

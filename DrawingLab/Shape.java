@@ -10,7 +10,9 @@ import java.awt.Graphics2D;
  */
 public abstract class Shape
 {
-    /** description of instance variable x (add comment for each instance variable) */
+    /** Point2D.Double center   center coordinates of shape
+        double radius           length of radius
+        Color color             color of the shape*/
     private Point2D.Double center;
     private double radius;
     private Color color;
@@ -19,31 +21,47 @@ public abstract class Shape
      */
     public Shape(Point2D.Double inputCenter, double inputRadius, Color inputColor)
     {
+        //Initializes all variables based on input parameters
         center = inputCenter;
         radius = inputRadius;
         color = inputColor;
     }
-
+    
+    /**
+     * @return returns center
+     */
     public Point2D.Double getCenter()
     {
         return center;
     }
-
+    
+    /**
+     * @return radius
+     */
     public double getRadius()
     {
         return radius;
     }
-
+    
+    /**
+     * @post    shape is moved to new coordinates 
+     */
     public void move(double x, double y)
     {
         center = new Point2D.Double(x, y); 
     }
-
+    
+    /**
+     * @post    radius is updated 
+     */
     public void setRadius(double r) 
     {
         radius = r;
     }
 
+    /**
+     * @return color
+     */
     public Color getColor()
     {
         return color;

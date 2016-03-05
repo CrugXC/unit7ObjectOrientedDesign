@@ -27,7 +27,10 @@ import java.awt.geom.Point2D;
  */
 public class DrawingPanel extends JPanel
 {
-    /** description of instance variable x (add comment for each instance variable) */
+    /** ArrayList<Shape> shapes     ArrayList of all shapes
+        Shape activeShape           Shape currently selected by user
+        Color currColor             Currently selected Color
+        Dimension dim               Dimension of component*/
     private ArrayList<Shape> shapes;
     private Shape activeShape;
     
@@ -40,49 +43,77 @@ public class DrawingPanel extends JPanel
      */
     public DrawingPanel()
     {
+        //Sets background to white
         this.setBackground(Color.WHITE);
         
+        //Sets starting color to blue
         currColor = Color.BLUE;
         
         shapes = new ArrayList<Shape>();
         
+        //Dimension of component is 1000 by 800
         dim = new Dimension(1000, 800);
         
         this.addMouseListener(new Listener());
         this.addMouseMotionListener(new Listener());
     }
     
+    /**
+     * @return currColor
+     */
     public Color getColor()
     {
         return currColor;
     }
     
+    /**
+     * @return dim
+     */
     public Dimension getPreferredSize()
     {
         return dim;
     }
     
+    /**
+     * @post Color is what user selected or same if they press cancel
+     */
     public void pickColor()
     {
-        currColor = JColorChooser.showDialog(this, "Pick Color", currColor);
+        Color newColor = JColorChooser.showDialog(this, "Pick Color", currColor);
+        if(newColor != null)
+        {
+            currColor = newColor;
+        }
     }
     
+    /**
+     * @post adds a circle to the shapes ArrayList
+     */
     public void addCircle()
     {
         shapes.add(new Circle(new Point2D.Double(600, 350), 25, currColor));
     }
     
+    /**
+     * @post adds a square to the shapes ArrayList
+     */
     public void addSquare()
     {
         shapes.add(new Square(new Point2D.Double(600, 350), 25, currColor));
     }
     
+    /**
+     * @post shapes are drawn on canvas
+     */
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        
+        //iterates through and calls draw method
         for(Shape shp: shapes)
         {
+            //Checks that there is an active shape to avoid NullPointerException
             shp.draw(g2, activeShape == null? true: (!(activeShape == shp)));
         }
     }
@@ -95,21 +126,25 @@ public class DrawingPanel extends JPanel
         
         public void mousePressed(MouseEvent event)
         {
+            //Checks to see if a shape is where the mouse was clicked
             found = false;
             for(Shape shp: shapes)
             {
                 if (shp.isInside(new Point2D.Double(event.getX(), event.getY())))
                 {
+                    //sets found to true and shape to activeShape
                     found = true;
                     activeShape = shp;
                 }            
             }
             
+            //if not found sets activeShape to null
             if(!found)
             {
                 activeShape = null;
             }
             
+            //updates
             repaint();
         }
         
@@ -119,6 +154,7 @@ public class DrawingPanel extends JPanel
         
         public void mouseDragged(MouseEvent event)
         {
+            //Moves shape based on mouse coordinates
             activeShape.move(event.getX(), event.getY());
             repaint();
         }
